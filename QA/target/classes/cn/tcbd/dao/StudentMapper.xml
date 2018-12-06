@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tcbd.dao.StudentMapper">
+
+    <resultMap id="studentMap" type="Student">
+        <id property="id" column="id"/>
+        <result column="grade_id" property="gradeId"/>
+        <result column="student_name" property="studentName"/>
+        <result column="student_num" property="studentNum"/>
+    </resultMap>
+
+    <select id="getStudent" resultMap="studentMap">
+        select * from student order by id
+    </select>
+
+    <select id="getStudentByGradeId" resultMap="studentMap">
+        select * from student where grade_id = #{gradeId} order by id
+    </select>
+
+    <delete id="deleteStudentByGradeId" parameterType="int">
+        delete from student where grade_id = #{gradeId}
+    </delete>
+</mapper>

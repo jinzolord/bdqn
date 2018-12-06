@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tcbd.dao.GradeMapper">
+
+    <resultMap id="gradeMap" type="Grade">
+        <id property="id" column="id"/>
+        <result column="grade_name" property="gradeName"/>
+        <result column="create_date" property="createDate"/>
+    </resultMap>
+
+    <select id="getGrade" resultMap="gradeMap">
+        select * from grade order by id desc
+    </select>
+
+    <select id="getDetail" resultMap="gradeMap" parameterType="int">
+        select * from grade where id = #{id}
+    </select>
+
+    <delete id="deleteGradeById" parameterType="int">
+        delete from grade where id = #{id}
+    </delete>
+</mapper>
